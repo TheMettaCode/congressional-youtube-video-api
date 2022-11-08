@@ -1,0 +1,22 @@
+{
+  "name": "congressional-youtube-video-api",
+  "version": "1.0.0",
+  "description": "API to retrieve youtube video data from specific channels by channel id",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "monitor": "nodemon index.js"
+  },
+  "keywords": [
+    "youtube"
+  ],
+  "author": "MettaCode",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.1.3",
+    "cheerio": "^1.0.0-rc.12",
+    "express": "^4.18.2",
+    "puppeteer": "^19.2.2"
+  }
+}
