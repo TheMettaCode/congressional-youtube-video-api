@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 const axios = require('axios');
 const cheerio = require('cheerio');
 const express = require('express');
@@ -20,7 +22,8 @@ const keywords = [
     "election", "us congress", "capitol", "capitol hill", "gop", "dems", "republicans", "democrats", "senate", "house of representatives", "speaker of the house", "stock", "investing", "tax", "majority leader", "minority leader", "filibuster", "constitution", "vote"
 ];
 
-const videoList = [];
+const videos = [];
+const date = new Date();
 
 youtubeChannelSources.forEach(source => {
 
@@ -31,7 +34,7 @@ youtubeChannelSources.forEach(source => {
     const thisList = getYoutubeVideoList(url);
     thisList.then((res) => {
         // console.log(res);
-        videoList.push({ "channel": source.name, "videos": res.length > 5 ? res.slice(0, 5) : res });
+        videos.push({ "channel": source.name, "channel-videos": res.length > 5 ? res.slice(0, 5) : res });
         // console.log(videoList);
     });
 
@@ -41,8 +44,8 @@ youtubeChannelSources.forEach(source => {
 
 
 app.get('/videos', (req, res) => {
-    console.log(videoList);
-    res.json(videoList);
+    // console.log(videos);
+    res.json({ "retrieved-date": date, videos });
 });
 
 app.get('/', (req, res, next) => {
@@ -59,6 +62,8 @@ async function getYoutubeVideoList(urlAddress) {
     await page.goto(urlAddress, {
         waitUntil: "networkidle2"
     });
+
+    await page.waitForSelector('#thumbnail');
     // const dimensions = await page.evaluate(() => {
     //     return {
     //         width: document.documentElement.clientWidth,
