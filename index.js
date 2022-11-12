@@ -34,7 +34,7 @@ youtubeChannelSources.forEach(source => {
     const thisList = getYoutubeVideoList(url);
     thisList.then((res) => {
         // console.log(res);
-        videos.push({ "channel": source.name, "channel-videos": res.length > 5 ? res.slice(0, 5) : res });
+        videos.push({ "channel-name": source.name, "channel-id": source.id, "channel-videos": res.length > 5 ? res.slice(0, 5) : res });
         // console.log(videoList);
     });
 
