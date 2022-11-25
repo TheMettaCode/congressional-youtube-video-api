@@ -1,0 +1,30 @@
+name: "Congressional Floor Actions"
+# author: "MettaCode Developers"
+# description: "Retrieve latest floor actions from US Congress and create JSON file"
+
+on:
+  push:
+    branches:
+      - main
+
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    - cron: "*/15 13-21 * * 1-5"
+
+permissions:
+  contents: write
+
+jobs:
+  save_json_file:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: node --version
+      - run: npm install express
+      - run: npm install puppeteer
+      - name: run-javascript
+        run: npm run start
+      - name: commit-latest-videos-json
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Latest Videos JSON Updated

@@ -4,42 +4,87 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 const express = require('express');
 const puppeteer = require('puppeteer');
+const fs = require('fs');
 
 const app = express();
-// const router = express.Router();
+
+/// FUNCTION TO FETCH VIDEO URLs WITH VIDEO IDs
+async function getYoutubeVideoList(channel, urlAddress) {
+    const browser = await puppeteer.launch({ headless: true });
+    const page = await browser.newPage();
+    await page.goto(urlAddress, {
+        // waitUntil: "networkidle2"
+        waitUntil: "domcontentloaded"
+    });
+
+    await page.waitForSelector('#details');
+
+    const allTitles = await page.evaluate(() => Array.from(document.querySelectorAll('h3 a'), attr => attr.title));
+    const allUrls = await page.evaluate(() => Array.from(document.querySelectorAll('h3 a'), attr => attr.href));
+    const allDates = await page.evaluate(() => Array.from(document.querySelectorAll('span.inline-metadata-item'), attr => attr.innerHTML));
+
+    const titles = allTitles.filter(e => e !== undefined && e != '' && e != null);
+    const urls = allUrls.filter(e => e !== undefined && e != '' && e != null);
+    const dates = allDates.filter(e => e !== undefined && e != '' && e != null && !e.includes('view'));
+
+    const combinedData = [];
+    if (titles.length == urls.length && urls.length == dates.length) {
+        for (var i = 0; i < titles.length; i++) {
+            console.log(`[${i}] - ${channel}, ${titles[i]}, ${urls[i]}, ${dates[i]}`);
+            if (dates[i].includes('minutes') || dates[i].includes('day') || dates[i].includes('seconds')) { combinedData.push({ "channel": channel, "title": titles[i], "url": urls[i], "id": urls[i].split('v=').pop(), "date": dates[i], "thumbnail": `https://i.ytimg.com/vi/${urls[i].split('v=').pop()}/hqdefault.jpg` }); }
+        }
+        console.log(`${titles.length} titles - ${urls.length} urls - ${dates.length} dates`);
+    } else {
+        console.log(`${titles.length} titles - ${urls.length} urls - ${dates.length} dates`);
+    }
+
+    await browser.close();
+    return combinedData;
+
+}
 
 const nameBase = "https://www.youtube.com/c/";
 const idBase = "https://www.youtube.com/channel/";
 const youtubeChannelSources = [
-    { name: "C-SPAN", id: "UCb--64Gl51jIEVE-GLDAVTg" },
-    { name: "Politico", id: "UCgjtvMmHXbutALaw9XzRkAg" },
-    { name: "Bloomberg Politics", id: "UCV61VqLMr2eIhH4f51PV0gA" },
-    { name: "Propublica", id: "UCtCL58_DaVdVRmev3yHK7pg" },
-    { name: "Capitol Babble", id: "UC4X_dh5dgyC0d6T3KkjFTTQ" }
+    { name: "C-SPAN", id: "UCb--64Gl51jIEVE-GLDAVTg", slug: "cspan" },
+    { name: "Politico", id: "UCgjtvMmHXbutALaw9XzRkAg", slug: "politico" },
+    { name: "Bloomberg Politics", id: "UCV61VqLMr2eIhH4f51PV0gA", slug: "bloomberg" },
+    { name: "Propublica", id: "UCtCL58_DaVdVRmev3yHK7pg", slug: "propublica" },
+    { name: "Capitol Babble", id: "UC4X_dh5dgyC0d6T3KkjFTTQ", slug: "capitolbabble" }
 ];
 
 const keywords = [
-    "election", "us congress", "capitol", "capitol hill", "gop", "dems", "republicans", "democrats", "senate", "house of representatives", "speaker of the house", "stock", "investing", "tax", "majority leader", "minority leader", "filibuster", "constitution", "vote"
+    "election", "us congress", "capitol", "capitol hill", "gop", "dems", "republicans", "democrats", "senate", "house of representatives", "speaker of the house", "stock", "investing", "tax", "majority leader", "minority leader", "filibuster", "constitution", "vote", "midterms", "midterm elections", "runoff election"
 ];
 
 const videos = [];
 const date = new Date();
+const outputFileName = "latest_videos.json";
 
-youtubeChannelSources.forEach(source => {
+async function getVideos(sources) {
+    for (var source of sources) {
 
-    console.log(`${source.name} puppeteer begin`);
+        console.log(`${source.name} puppeteer begin`);
 
-    const url = `${idBase}${source.id}/videos`;
+        const url = `${idBase}${source.id}/videos`;
 
-    const thisList = getYoutubeVideoList(url);
-    thisList.then((res) => {
-        // console.log(res);
-        videos.push({ "channel-name": source.name, "channel-id": source.id, "channel-videos": res.length > 5 ? res.slice(0, 5) : res });
-        // console.log(videoList);
+        await getYoutubeVideoList(source.name, url)
+            .then((channelVideos) => {
+                videos.push({ "channel-name": source.name, "channel-id": source.id, "channel-slug": source.slug, "channel-url": url, "channel-videos": channelVideos.length > 6 ? channelVideos.slice(0, 6) : channelVideos });
+                // console.log(videoList);
+            });
+
+        // videoList.push({ thisList });
+        console.log(`${source.name} puppeteer end`);
+    };
+};
+
+
+getVideos(youtubeChannelSources).then(() => {
+    console.log(`Writing to ${outputFileName}`);
+    fs.writeFile(outputFileName, JSON.stringify(videos), (err) => {
+        if (err) { console.log(err); }
     });
-
-    // videoList.push({ thisList });
-    console.log(`${source.name} puppeteer end`);
 });
 
 
@@ -53,36 +98,5 @@ app.get('/', (req, res, next) => {
     res.json('Congressional YouTube Video API');
 });
 
-app.listen(3000, () => console.log('Server is running'));
+// app.listen(3000, () => console.log('Server is running'));
 
-/// FUNCTION TO FETCH VIDEO URLs WITH VIDEO IDs
-async function getYoutubeVideoList(urlAddress) {
-    const browser = await puppeteer.launch({ headless: true });
-    const page = await browser.newPage();
-    await page.goto(urlAddress, {
-        waitUntil: "networkidle2"
-    });
-
-    await page.waitForSelector('#thumbnail');
-    // const dimensions = await page.evaluate(() => {
-    //     return {
-    //         width: document.documentElement.clientWidth,
-    //         height: document.documentElement.clientHeight,
-    //         deviceScaleFactor: window.devicePixelRatio,
-    //     };
-    // });
-    // console.log('Dimensions:', dimensions);
-    // console.log('Thumbnail URLs:', thumbnailUrls)
-
-    const thumbnailUrls = await page.evaluate(() => Array.from(document.querySelectorAll('#thumbnail'), attr => attr.href));
-    const filteredUrls = thumbnailUrls.filter(e => e != '' && e != null);
-
-    await browser.close();
-    return filteredUrls;
-
-    // const pageBody = await page.$('body');
-    // const html = await page.evaluate(body => body.innerHTML, pageBody);
-    // await pageBody.dispose();
-    // console.log('HTML:', html);
-
-}
