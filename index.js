@@ -1,7 +1,5 @@
 // @ts-nocheck
 
-const axios = require('axios');
-const cheerio = require('cheerio');
 const express = require('express');
 const puppeteer = require('puppeteer');
 const fs = require('fs');
