@@ -80,7 +80,7 @@ async function getVideos(sources) {
 
 getVideos(youtubeChannelSources).then(() => {
     console.log(`Writing to ${outputFileName}`);
-    fs.writeFile(outputFileName, JSON.stringify(videos), (err) => {
+    fs.writeFile(outputFileName, JSON.stringify({ "retrieved-date": date, videos }), (err) => {
         if (err) { console.log(err); }
     });
 });
@@ -96,5 +96,5 @@ app.get('/', (req, res, next) => {
     res.json('Congressional YouTube Video API');
 });
 
-// app.listen(3000, () => console.log('Server is running'));
+app.listen(3000, () => console.log('Server is running'));
 
