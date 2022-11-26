@@ -98,5 +98,5 @@ app.get('/', (req, res, next) => {
     res.json('Congressional YouTube Video API');
 });
 
-app.listen(3000, () => console.log('Server is running'));
+// app.listen(3000, () => console.log('Server is running'));
 
