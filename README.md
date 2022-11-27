@@ -8,4 +8,5 @@ Currently retrieves:
 - Politico
 - Bloomberg Politics
 - Propublica
+- USA Today
 - Capitol Babble
