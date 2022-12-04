@@ -29,7 +29,7 @@ async function getYoutubeVideoList(channel, urlAddress) {
     if (titles.length == urls.length && urls.length == dates.length) {
         for (var i = 0; i < titles.length; i++) {
             console.log(`[${i}] - ${channel}, ${titles[i]}, ${urls[i]}, ${dates[i]}`);
-            if (keywords.find((word) => titles[i].toLowerCase().includes(word))
+            if ((channel == 'Capitol Babble' || keywords.find((word) => titles[i].toLowerCase().includes(word)))
                 && (dates[i].includes('minute') || dates[i].includes('minutes') || dates[i].includes('hour') || dates[i].includes('hours') || dates[i].includes('day') || dates[i].includes('seconds'))) { combinedData.push({ "channel": channel, "title": titles[i], "url": urls[i], "id": urls[i].split('v=').pop(), "date": dates[i], "thumbnail": `https://i.ytimg.com/vi/${urls[i].split('v=').pop()}/hqdefault.jpg` }); }
         }
         console.log(`${titles.length} titles - ${urls.length} urls - ${dates.length} dates`);
