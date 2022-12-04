@@ -54,7 +54,7 @@ const youtubeChannelSources = [
 ];
 
 const keywords = [
-    "amendment", "biden", "ballot", " bill ", "congress", "capitol", "capitol hill", "constitution", " dems ", "democrats", "election", "filibuster", " gop ", "house floor", "house of representatives", "investing", "majority leader", "midterms", "midterm elections", "minority leader", "obama", "omnibus", "pelosi", "republicans", "runoff election", "senate", "senate floor", "speaker of the house", "stock", "tax", "trump", "us congress", "vote", " war ", "washington", " dc ", "white house"
+    "amendment", "biden", "ballot", " bill ", "congress", "capitol", "capitol hill", "constitution", " dems ", "democrats", "election", "filibuster", " gop ", "house floor", "house of representatives", "investing", "majority leader", "midterms", "midterm elections", "minority leader", "obama", "omnibus", "pelosi", "republicans", "runoff election", "senate", "senate floor", "speaker of the house", "stock", "tax", "trump", "us congress", "vote", "war in", "washington dc", "white house"
 ];
 
 const videos = [];
