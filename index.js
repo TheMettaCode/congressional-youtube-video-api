@@ -29,7 +29,7 @@ async function getYoutubeVideoList(channel, urlAddress) {
     if (titles.length == urls.length && urls.length == dates.length) {
         for (var i = 0; i < titles.length; i++) {
             console.log(`[${i}] - ${channel}, ${titles[i]}, ${urls[i]}, ${dates[i]}`);
-            if ((channel == 'Capitol Babble' || keywords.find((word) => titles[i].toLowerCase().includes(word)))
+            if ((channel == 'Capitol Babble' || channel == 'MettaCode Developers' || keywords.find((word) => titles[i].toLowerCase().includes(word)))
                 && (dates[i].includes('minute') || dates[i].includes('minutes') || dates[i].includes('hour') || dates[i].includes('hours') || dates[i].includes('day') || dates[i].includes('seconds'))) { combinedData.push({ "channel": channel, "title": titles[i], "url": urls[i], "id": urls[i].split('v=').pop(), "date": dates[i], "thumbnail": `https://i.ytimg.com/vi/${urls[i].split('v=').pop()}/hqdefault.jpg` }); }
         }
         console.log(`${titles.length} titles - ${urls.length} urls - ${dates.length} dates`);
@@ -45,6 +45,7 @@ async function getYoutubeVideoList(channel, urlAddress) {
 const nameBase = "https://www.youtube.com/c/";
 const idBase = "https://www.youtube.com/channel/";
 const youtubeChannelSources = [
+    { name: "MettaCode Developers", id: "UCUrW7YMZDBaVMjP7V3XnpVw", slug: "mettacode" },
     { name: "C-SPAN", id: "UCb--64Gl51jIEVE-GLDAVTg", slug: "cspan" },
     { name: "Politico", id: "UCgjtvMmHXbutALaw9XzRkAg", slug: "politico" },
     { name: "Bloomberg Politics", id: "UCV61VqLMr2eIhH4f51PV0gA", slug: "bloomberg" },
