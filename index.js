@@ -12,11 +12,13 @@ async function getYoutubeVideoList(channel, urlAddress) {
     const page = await browser.newPage();
 
     // Configure the navigation timeout
-    await page.setDefaultNavigationTimeout(0);
+    // await page.setDefaultNavigationTimeout(0);
 
     await page.goto(urlAddress, {
         // waitUntil: "networkidle2"
-        waitUntil: "domcontentloaded"
+        waitUntil: "load",
+        // waitUntil: "domcontentloaded",
+        timeout: 5000
     });
 
     await page.waitForSelector('#details');
