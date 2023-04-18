@@ -10,6 +10,10 @@ const app = express();
 async function getYoutubeVideoList(channel, urlAddress) {
     const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
+
+    // Configure the navigation timeout
+    await page.setDefaultNavigationTimeout(0);
+
     await page.goto(urlAddress, {
         // waitUntil: "networkidle2"
         waitUntil: "domcontentloaded"
