@@ -14,37 +14,44 @@ async function getYoutubeVideoList(channel, urlAddress) {
     // Configure the navigation timeout
     // await page.setDefaultNavigationTimeout(0);
 
-    await page.goto(urlAddress, {
+    const status = await page.goto(urlAddress, {
         // waitUntil: "networkidle2"
         waitUntil: "load",
         // waitUntil: "domcontentloaded",
-        timeout: 5000
+        // timeout: 5000
     });
 
-    await page.waitForSelector('#details');
+    if (status != 404) {
 
-    const allTitles = await page.evaluate(() => Array.from(document.querySelectorAll('h3 a'), attr => attr.title));
-    const allUrls = await page.evaluate(() => Array.from(document.querySelectorAll('h3 a'), attr => attr.href));
-    const allDates = await page.evaluate(() => Array.from(document.querySelectorAll('span.inline-metadata-item'), attr => attr.innerHTML));
+        console.log(`Page found . Status code: ${status.status()}`);
 
-    const titles = allTitles.filter(e => e !== undefined && e != '' && e != null);
-    const urls = allUrls.filter(e => e !== undefined && e != '' && e != null);
-    const dates = allDates.filter(e => e !== undefined && e != '' && e != null && !e.includes('view'));
+        await page.waitForSelector('#details');
 
-    const combinedData = [];
-    if (titles.length == urls.length && urls.length == dates.length) {
-        for (var i = 0; i < titles.length; i++) {
-            console.log(`[${i}] - ${channel}, ${titles[i]}, ${urls[i]}, ${dates[i]}`);
-            if ((channel == 'Capitol Babble' || channel == 'MettaCode Developers' || keywords.find((word) => titles[i].toLowerCase().includes(word)))
-                && (dates[i].includes('minute') || dates[i].includes('minutes') || dates[i].includes('hour') || dates[i].includes('hours') || dates[i].includes('day') || dates[i].includes('seconds'))) { combinedData.push({ "channel": channel, "title": titles[i], "url": urls[i], "id": urls[i].split('v=').pop(), "date": dates[i], "thumbnail": `https://i.ytimg.com/vi/${urls[i].split('v=').pop()}/hqdefault.jpg` }); }
+        const allTitles = await page.evaluate(() => Array.from(document.querySelectorAll('h3 a'), attr => attr.title));
+        const allUrls = await page.evaluate(() => Array.from(document.querySelectorAll('h3 a'), attr => attr.href));
+        const allDates = await page.evaluate(() => Array.from(document.querySelectorAll('span.inline-metadata-item'), attr => attr.innerHTML));
+
+        const titles = allTitles.filter(e => e !== undefined && e != '' && e != null);
+        const urls = allUrls.filter(e => e !== undefined && e != '' && e != null);
+        const dates = allDates.filter(e => e !== undefined && e != '' && e != null && !e.includes('view'));
+
+        const combinedData = [];
+        if (titles.length == urls.length && urls.length == dates.length) {
+            for (var i = 0; i < titles.length; i++) {
+                console.log(`[${i}] - ${channel}, ${titles[i]}, ${urls[i]}, ${dates[i]}`);
+                if ((channel == 'Capitol Babble' || channel == 'MettaCode Developers' || keywords.find((word) => titles[i].toLowerCase().includes(word)))
+                    && (dates[i].includes('minute') || dates[i].includes('minutes') || dates[i].includes('hour') || dates[i].includes('hours') || dates[i].includes('day') || dates[i].includes('seconds'))) { combinedData.push({ "channel": channel, "title": titles[i], "url": urls[i], "id": urls[i].split('v=').pop(), "date": dates[i], "thumbnail": `https://i.ytimg.com/vi/${urls[i].split('v=').pop()}/hqdefault.jpg` }); }
+            }
+            console.log(`${titles.length} titles - ${urls.length} urls - ${dates.length} dates`);
+        } else {
+            console.log(`${titles.length} titles - ${urls.length} urls - ${dates.length} dates`);
         }
-        console.log(`${titles.length} titles - ${urls.length} urls - ${dates.length} dates`);
-    } else {
-        console.log(`${titles.length} titles - ${urls.length} urls - ${dates.length} dates`);
-    }
 
-    await browser.close();
-    return combinedData;
+        await browser.close();
+        return combinedData;
+    } else {
+        console.log(`Page not found error... Status code: ${status.status()}`);
+    }
 
 }
 
