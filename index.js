@@ -15,8 +15,8 @@ async function getYoutubeVideoList(channel, urlAddress) {
     // await page.setDefaultNavigationTimeout(0);
 
     const status = await page.goto(urlAddress, {
-        // waitUntil: "networkidle2"
-        waitUntil: "load",
+        waitUntil: "networkidle2"
+        // waitUntil: "load",
         // waitUntil: "domcontentloaded",
         // timeout: 5000
     });
@@ -58,7 +58,7 @@ async function getYoutubeVideoList(channel, urlAddress) {
 const nameBase = "https://www.youtube.com/c/";
 const idBase = "https://www.youtube.com/channel/";
 const youtubeChannelSources = [
-    // { name: "MettaCode Developers", id: "UCUrW7YMZDBaVMjP7V3XnpVw", slug: "mettacode" },
+    { name: "MettaCode Developers", id: "UCUrW7YMZDBaVMjP7V3XnpVw", slug: "mettacode" },
     { name: "C-SPAN", id: "UCb--64Gl51jIEVE-GLDAVTg", slug: "cspan" },
     { name: "Politico", id: "UCgjtvMmHXbutALaw9XzRkAg", slug: "politico" },
     { name: "Bloomberg Politics", id: "UCV61VqLMr2eIhH4f51PV0gA", slug: "bloomberg" },
