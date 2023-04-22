@@ -23,7 +23,7 @@ async function getYoutubeVideoList(channel, urlAddress) {
 
     if (status != 404) {
 
-        console.log(`Page found . Status code: ${status.status()}`);
+        console.log(`Page found! Status code: ${status.status()}`);
 
         await page.waitForSelector('#details');
 
