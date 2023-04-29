@@ -64,11 +64,12 @@ const youtubeChannelSources = [
     { name: "Bloomberg Politics", id: "UCV61VqLMr2eIhH4f51PV0gA", slug: "bloomberg" },
     { name: "Propublica", id: "UCtCL58_DaVdVRmev3yHK7pg", slug: "propublica" },
     { name: "Capitol Babble", id: "UC4X_dh5dgyC0d6T3KkjFTTQ", slug: "capitolbabble" },
-    { name: "USA Today", id: "UCP6HGa63sBC7-KHtkme-p-g", slug: "usatoday" }
+    { name: "USA Today", id: "UCP6HGa63sBC7-KHtkme-p-g", slug: "usatoday" },
+    { name: "Epoch TV", id: "UCr9eziCDBtDANyWguKLr4vg", slug: "epochtv" }
 ];
 
 const keywords = [
-    "amendment", "biden", "ballot", " bill ", "congress", "capitol", "capitol hill", "constitution", " dems ", "democrats", "election", "filibuster", " gop ", "house floor", "house of representatives", "investing", " law ", "majority leader", "midterms", "midterm elections", "minority leader", "nuclear war", "obama", "omnibus", "pelosi", "republicans", "runoff election", "senate", "senate floor", "speaker of the house", "stock", "tax", "trump", "us congress", "vote", "war in", "washington dc", "white house"
+    "amendment", "biden", "ballot", " bill ", "congress", "capitol", "capitol hill", "constitution", " dems ", "democrats", "election", "filibuster", " gop ", "house floor", "house of representatives", "investing", " law ", "majority leader", "kevin mccarthy", "midterms", "midterm elections", "minority leader", "nuclear war", "obama", "omnibus", " nancy pelosi", "republicans", "runoff election", "senate", "senate floor", "speaker of the house", "stock", "tax", "trump", "us congress", "vote", "war in", "washington dc", "whistleblower", "white house"
 ];
 
 const videos = [];
