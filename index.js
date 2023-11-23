@@ -66,7 +66,8 @@ const youtubeChannelSources = [
     { name: "Epoch TV", id: "UCr9eziCDBtDANyWguKLr4vg", slug: "epochtv" },
     { name: "Propublica", id: "UCtCL58_DaVdVRmev3yHK7pg", slug: "propublica" },
     { name: "USA Today", id: "UCP6HGa63sBC7-KHtkme-p-g", slug: "usatoday" },
-    { name: "Forbes Breaking", id: "UCg40OxZ1GYh3u3jBntB6DLg", slug: "forbes" }
+    { name: "Forbes Breaking", id: "UCg40OxZ1GYh3u3jBntB6DLg", slug: "forbes" },
+    { name: "Valuetainment", id: "UCIHdDJ0tjn_3j-FS7s_X1kQ", slug: "Valuetainment" }
 ];
 
 const keywords = [
