@@ -71,7 +71,7 @@ const youtubeChannelSources = [
 ];
 
 const keywords = [
-    "amendment", "biden", "ballot", " bill ", "congress", "capitol", "capitol hill", "constitution", " dems ", "democrats", "election", "filibuster", " gop ", "house floor", "house of representatives", "investing", " law ", "majority leader", "kevin mccarthy", "midterms", "midterm elections", "minority leader", "nuclear war", "obama", "omnibus", " nancy pelosi", "republicans", "runoff election", "senate", "senate floor", "speaker of the house", "stock", "tax", "trump", "us congress", "vote", "war in", "washington dc", "whistleblower", "white house", "press secretary", "labor market", "committee", "financial services"
+    "amendment", "biden", "ballot", " bill ", "congress", "capitol", "capitol hill", "constitution", " dems ", "democrats", "election", "filibuster", " gop ", "house floor", "house of representatives", "investing", " law ", "majority leader", "mike johnson", "midterms", "midterm elections", "minority leader", "nuclear war", "obama", "omnibus", " nancy pelosi", "republicans", "runoff election", "senate", "senate floor", "speaker of the house", "stock", "tax", "trump", "us congress", "vote", "war in", "washington dc", "whistleblower", "white house", "press secretary", "labor market", "committee", "financial services"
 ];
 
 const videos = [];
