@@ -21,8 +21,8 @@ jobs:
     steps:
       # - uses: actions/checkout@v2
       - name: Checkout
-        uses: actions/checkout@v3
-        # uses: actions/checkout@v4
+        # uses: actions/checkout@v3
+        uses: actions/checkout@v4
         # with:
         #   sparse-checkout: |
         #     latest_videos.json
@@ -31,10 +31,10 @@ jobs:
         run: node --version
       - run: npm --version
       - run: npm install
-      # - name: Install express
-      #   run: npm install express
-      # - name: Install puppeteer
-      #   run: npm install puppeteer
+      - name: Install express
+        run: npm install express
+      - name: Install puppeteer
+        run: npm install puppeteer
       - name: run-javascript
         run: node index.js
         # run: npm run start
