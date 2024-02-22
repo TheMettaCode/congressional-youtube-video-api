@@ -109,15 +109,15 @@ getVideos(youtubeChannelSources).then(() => {
 });
 
 
-app.get('/videos', (req, res) => {
-    // console.log(videos);
-    res.json({ "retrieved-date": date, videos });
-});
+// app.get('/videos', (req, res) => {
+//     // console.log(videos);
+//     res.json({ "retrieved-date": date, videos });
+// });
 
-app.get('/', (req, res, next) => {
-    // console.log(videoList);
-    res.json('Congressional YouTube Video API');
-});
+// app.get('/', (req, res, next) => {
+//     // console.log(videoList);
+//     res.json('Congressional YouTube Video API');
+// });
 
 // app.listen(3000, () => console.log('Server is running'));
 
