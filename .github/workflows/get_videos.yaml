@@ -28,8 +28,8 @@ jobs:
           sparse-checkout-cone-mode: false
       - name: Get Version
         run: node --version
-        run: npm --version
-        run: npm install
+      - run: npm --version
+      - run: npm install
       # - name: Install express
       #   run: npm install express
       # - name: Install puppeteer
