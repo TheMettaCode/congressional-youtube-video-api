@@ -8,49 +8,53 @@ const app = express();
 
 /// FUNCTION TO FETCH VIDEO URLs WITH VIDEO IDs
 async function getYoutubeVideoList(channel, urlAddress) {
-    const browser = await puppeteer.launch({ headless: true });
-    const page = await browser.newPage();
+    try {
+        const browser = await puppeteer.launch({ headless: true });
+        const page = await browser.newPage();
 
-    // Configure the navigation timeout
-    // await page.setDefaultNavigationTimeout(0);
+        // Configure the navigation timeout
+        // await page.setDefaultNavigationTimeout(0);
 
-    const status = await page.goto(urlAddress, {
-        // waitUntil: "networkidle2"
-        // waitUntil: "load",
-        waitUntil: "domcontentloaded",
-        timeout: 40000
-    });
+        const status = await page.goto(urlAddress, {
+            // waitUntil: "networkidle2"
+            // waitUntil: "load",
+            waitUntil: "domcontentloaded",
+            timeout: 40000
+        });
 
-    if (status != 404) {
+        if (status != 404) {
 
-        console.log(`Page found! Status code: ${status.status()}`);
+            console.log(`Page found! Status code: ${status.status()}`);
 
-        await page.waitForSelector('#details');
+            await page.waitForSelector('#details');
 
-        const allTitles = await page.evaluate(() => Array.from(document.querySelectorAll('h3 a'), attr => attr.title));
-        const allUrls = await page.evaluate(() => Array.from(document.querySelectorAll('h3 a'), attr => attr.href));
-        const allDates = await page.evaluate(() => Array.from(document.querySelectorAll('span.inline-metadata-item'), attr => attr.innerHTML));
+            const allTitles = await page.evaluate(() => Array.from(document.querySelectorAll('h3 a'), attr => attr.title));
+            const allUrls = await page.evaluate(() => Array.from(document.querySelectorAll('h3 a'), attr => attr.href));
+            const allDates = await page.evaluate(() => Array.from(document.querySelectorAll('span.inline-metadata-item'), attr => attr.innerHTML));
 
-        const titles = allTitles.filter(e => e !== undefined && e != '' && e != null);
-        const urls = allUrls.filter(e => e !== undefined && e != '' && e != null);
-        const dates = allDates.filter(e => e !== undefined && e != '' && e != null && !e.includes('view'));
+            const titles = allTitles.filter(e => e !== undefined && e != '' && e != null);
+            const urls = allUrls.filter(e => e !== undefined && e != '' && e != null);
+            const dates = allDates.filter(e => e !== undefined && e != '' && e != null && !e.includes('view'));
 
-        const combinedData = [];
-        if (titles.length == urls.length && urls.length == dates.length) {
-            for (var i = 0; i < titles.length; i++) {
-                console.log(`[${i}] - ${channel}, ${titles[i]}, ${urls[i]}, ${dates[i]}`);
-                if ((channel == 'Capitol Babble' || channel == 'MettaCode Developers' || keywords.find((word) => titles[i].toLowerCase().includes(word)))
-                    && (dates[i].includes('minute') || dates[i].includes('minutes') || dates[i].includes('hour') || dates[i].includes('hours') || dates[i].includes('day') || dates[i].includes('seconds'))) { combinedData.push({ "channel": channel, "title": titles[i], "url": urls[i], "id": urls[i].split('v=').pop(), "date": dates[i], "thumbnail": `https://i.ytimg.com/vi/${urls[i].split('v=').pop()}/hqdefault.jpg` }); }
+            const combinedData = [];
+            if (titles.length == urls.length && urls.length == dates.length) {
+                for (var i = 0; i < titles.length; i++) {
+                    console.log(`[${i}] - ${channel}, ${titles[i]}, ${urls[i]}, ${dates[i]}`);
+                    if ((channel == 'Capitol Babble' || channel == 'MettaCode Developers' || keywords.find((word) => titles[i].toLowerCase().includes(word)))
+                        && (dates[i].includes('minute') || dates[i].includes('minutes') || dates[i].includes('hour') || dates[i].includes('hours') || dates[i].includes('day') || dates[i].includes('seconds'))) { combinedData.push({ "channel": channel, "title": titles[i], "url": urls[i], "id": urls[i].split('v=').pop(), "date": dates[i], "thumbnail": `https://i.ytimg.com/vi/${urls[i].split('v=').pop()}/hqdefault.jpg` }); }
+                }
+                console.log(`${titles.length} titles - ${urls.length} urls - ${dates.length} dates`);
+            } else {
+                console.log(`${titles.length} titles - ${urls.length} urls - ${dates.length} dates`);
             }
-            console.log(`${titles.length} titles - ${urls.length} urls - ${dates.length} dates`);
-        } else {
-            console.log(`${titles.length} titles - ${urls.length} urls - ${dates.length} dates`);
-        }
 
-        await browser.close();
-        return combinedData;
-    } else {
-        console.log(`Page not found error... Status code: ${status.status()}`);
+            await browser.close();
+            return combinedData;
+        } else {
+            console.log(`Page not found error... Status code: ${status.status()}`);
+        }
+    } catch (error) {
+        console.log(`The event payload: ${error}`);
     }
 
 }
@@ -105,15 +109,15 @@ getVideos(youtubeChannelSources).then(() => {
 });
 
 
-// app.get('/videos', (req, res) => {
-//     // console.log(videos);
-//     res.json({ "retrieved-date": date, videos });
-// });
+app.get('/videos', (req, res) => {
+    // console.log(videos);
+    res.json({ "retrieved-date": date, videos });
+});
 
-// app.get('/', (req, res, next) => {
-//     // console.log(videoList);
-//     res.json('Congressional YouTube Video API');
-// });
+app.get('/', (req, res, next) => {
+    // console.log(videoList);
+    res.json('Congressional YouTube Video API');
+});
 
 // app.listen(3000, () => console.log('Server is running'));
 
