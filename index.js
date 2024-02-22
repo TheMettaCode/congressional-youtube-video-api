@@ -64,14 +64,14 @@ const idBase = "https://www.youtube.com/channel/";
 const youtubeChannelSources = [
     { name: "MettaCode Developers", id: "UCUrW7YMZDBaVMjP7V3XnpVw", slug: "mettacode" },
     { name: "Capitol Babble", id: "UC4X_dh5dgyC0d6T3KkjFTTQ", slug: "capitolbabble" },
-    { name: "Bloomberg Politics", id: "UCV61VqLMr2eIhH4f51PV0gA", slug: "bloomberg" },
-    { name: "Politico", id: "UCgjtvMmHXbutALaw9XzRkAg", slug: "politico" },
-    { name: "C-SPAN", id: "UCb--64Gl51jIEVE-GLDAVTg", slug: "cspan" },
-    { name: "Epoch TV", id: "UCr9eziCDBtDANyWguKLr4vg", slug: "epochtv" },
-    { name: "Propublica", id: "UCtCL58_DaVdVRmev3yHK7pg", slug: "propublica" },
-    { name: "USA Today", id: "UCP6HGa63sBC7-KHtkme-p-g", slug: "usatoday" },
-    { name: "Forbes Breaking", id: "UCg40OxZ1GYh3u3jBntB6DLg", slug: "forbes" },
-    { name: "Valuetainment", id: "UCIHdDJ0tjn_3j-FS7s_X1kQ", slug: "Valuetainment" }
+    // { name: "Bloomberg Politics", id: "UCV61VqLMr2eIhH4f51PV0gA", slug: "bloomberg" },
+    // { name: "Politico", id: "UCgjtvMmHXbutALaw9XzRkAg", slug: "politico" },
+    // { name: "C-SPAN", id: "UCb--64Gl51jIEVE-GLDAVTg", slug: "cspan" },
+    // { name: "Epoch TV", id: "UCr9eziCDBtDANyWguKLr4vg", slug: "epochtv" },
+    // { name: "Propublica", id: "UCtCL58_DaVdVRmev3yHK7pg", slug: "propublica" },
+    // { name: "USA Today", id: "UCP6HGa63sBC7-KHtkme-p-g", slug: "usatoday" },
+    // { name: "Forbes Breaking", id: "UCg40OxZ1GYh3u3jBntB6DLg", slug: "forbes" },
+    // { name: "Valuetainment", id: "UCIHdDJ0tjn_3j-FS7s_X1kQ", slug: "Valuetainment" }
 ];
 
 const keywords = [
