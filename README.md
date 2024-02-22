@@ -10,3 +10,5 @@ Currently retrieves:
 - Propublica
 - USA Today
 - Capitol Babble
+- Forbes Breaking
+- Valuetainment
