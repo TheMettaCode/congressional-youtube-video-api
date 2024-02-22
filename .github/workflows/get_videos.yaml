@@ -17,15 +17,16 @@ permissions:
 jobs:
   save_json_file:
     runs-on: ubuntu-latest
-    container: node:12
+    container: node:16
     steps:
       # - uses: actions/checkout@v2
       - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          sparse-checkout: |
-            latest_videos.json
-          sparse-checkout-cone-mode: false
+        uses: actions/checkout@v3
+        # uses: actions/checkout@v4
+        # with:
+        #   sparse-checkout: |
+        #     latest_videos.json
+        #   sparse-checkout-cone-mode: false
       - name: Get Version
         run: node --version
       - run: npm --version
