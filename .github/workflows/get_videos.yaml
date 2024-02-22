@@ -15,9 +15,9 @@ on:
 permissions:
   contents: write
 
-runs:
-  using: "node12"
-  main: "index.js"
+# runs:
+#   using: "node12"
+#   main: "index.js"
 
 jobs:
   save_json_file:
