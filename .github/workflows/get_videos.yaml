@@ -28,7 +28,7 @@ jobs:
       - run: npm install express
       - run: npm install puppeteer
       - name: run-javascript
-        run: npm run ./index.js
+        run: node ./index.js
         # run: npm run start
       - name: commit-latest-videos-json
         uses: stefanzweifel/git-auto-commit-action@v4
