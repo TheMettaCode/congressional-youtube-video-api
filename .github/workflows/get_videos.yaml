@@ -18,7 +18,12 @@ jobs:
   save_json_file:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      # - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            latest_videos.json
+          sparse-checkout-cone-mode: false
       - run: node --version
       - run: npm install express
       - run: npm install puppeteer
