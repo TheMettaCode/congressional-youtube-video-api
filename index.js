@@ -103,9 +103,9 @@ async function getVideos(sources) {
 
 getVideos(youtubeChannelSources).then(() => {
     console.log(`Writing to ${outputFileName}`);
-    // fs.writeFile(outputFileName, JSON.stringify({ "retrieved-date": date, videos }), (err) => {
-    //     if (err) { console.log(err); }
-    // });
+    fs.writeFile(outputFileName, JSON.stringify({ "retrieved-date": date, videos }), (err) => {
+        if (err) { console.log(err); }
+    });
 });
 
 
