@@ -35,6 +35,8 @@ jobs:
         run: npm install express
       - name: Install puppeteer
         run: npm install puppeteer
+      - name: Install fs
+        run: npm install fs
       - name: run-javascript
         # run: node index.js
         run: npm run start
