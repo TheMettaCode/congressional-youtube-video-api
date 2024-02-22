@@ -20,15 +20,15 @@ jobs:
     steps:
       # - uses: actions/checkout@v2
       - uses: actions/checkout@v4
-        with:
-          sparse-checkout: |
-            latest_videos.json
-          sparse-checkout-cone-mode: false
+    with:
+      sparse-checkout: |
+        README.md
+      sparse-checkout-cone-mode: false
       - run: node --version
       - run: npm install express
       - run: npm install puppeteer
       - name: run-javascript
-        run: node index.js
+        run: npm run ./index.js
         # run: npm run start
       - name: commit-latest-videos-json
         uses: stefanzweifel/git-auto-commit-action@v4
