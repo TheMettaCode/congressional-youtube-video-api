@@ -17,8 +17,7 @@ permissions:
 jobs:
   save_json_file:
     runs-on: ubuntu-latest
-    uses: node12
-    # container: node:16
+    container: node:12
     steps:
       # - uses: actions/checkout@v2
       - name: Checkout
