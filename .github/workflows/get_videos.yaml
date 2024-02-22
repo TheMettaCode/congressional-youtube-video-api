@@ -16,23 +16,27 @@ permissions:
 
 jobs:
   save_json_file:
-    runs:
-      using: "node12"
-      main: "index.js"
     runs-on: ubuntu-latest
+    container: node:16
     steps:
       # - uses: actions/checkout@v2
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
           sparse-checkout: |
-            README.md
+            latest_videos.json
           sparse-checkout-cone-mode: false
-      - run: node --version
-      - run: npm install express
-      - run: npm install puppeteer
+      - name: Get Version
+        run: node --version
+        run: npm --version
+        run: npm install
+      # - name: Install express
+      #   run: npm install express
+      # - name: Install puppeteer
+      #   run: npm install puppeteer
       - name: run-javascript
-        # run: node ./index.js
-        run: npm run start
+        run: node index.js
+        # run: npm run start
       - name: commit-latest-videos-json
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
