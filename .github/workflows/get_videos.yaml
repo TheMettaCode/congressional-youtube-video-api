@@ -2,10 +2,6 @@ name: "Congressional Latest Videos"
 # author: "MettaCode Developers"
 # description: "Retrieve latest floor actions from US Congress and create JSON file"
 
-runs:
-  using: "node12"
-  main: "index.js"
-
 on:
   push:
     branches:
@@ -20,6 +16,9 @@ permissions:
 
 jobs:
   save_json_file:
+    runs:
+      using: "node12"
+      main: "index.js"
     runs-on: ubuntu-latest
     steps:
       # - uses: actions/checkout@v2
