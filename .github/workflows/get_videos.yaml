@@ -15,6 +15,10 @@ on:
 permissions:
   contents: write
 
+runs:
+  using: "node12"
+  main: "index.js"
+
 jobs:
   save_json_file:
     runs-on: ubuntu-latest
@@ -38,12 +42,12 @@ jobs:
         run: npm install puppeteer
       # - name: Install fs
       #   run: npm install fs
-      # - name: Run Index.js Javascript
+      - name: Run Index.js Javascript
+        # run: node index.js
+        run: npm run start
+      # - name: Execute Javascript
+      #   uses: amochkin/action-javascript@v1
       #   # run: node index.js
-      #   run: npm run start
-      - name: Execute Javascript
-        uses: amochkin/action-javascript@v1
-        run: node index.js
       - name: commit-latest-videos-json
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
