@@ -38,7 +38,8 @@ async function getYoutubeVideoList(channel, urlAddress) {
 
             const combinedData = [];
             if (titles.length == urls.length && urls.length == dates.length) {
-                for (var i = 0; i < titles.length; i++) {
+                var items = titles.length > 11 ? 11 : titles.length
+                for (var i = 0; i < items; i++) {
                     console.log(`[${i}] - ${channel}, ${titles[i]}, ${urls[i]}, ${dates[i]}`);
                     if ((channel == 'Capitol Babble' || channel == 'MettaCode Developers' || keywords.find((word) => titles[i].toLowerCase().includes(word)))
                         && (dates[i].includes('minute') || dates[i].includes('minutes') || dates[i].includes('hour') || dates[i].includes('hours') || dates[i].includes('day') || dates[i].includes('seconds'))) { combinedData.push({ "channel": channel, "title": titles[i], "url": urls[i], "id": urls[i].split('v=').pop(), "date": dates[i], "thumbnail": `https://i.ytimg.com/vi/${urls[i].split('v=').pop()}/hqdefault.jpg` }); }
