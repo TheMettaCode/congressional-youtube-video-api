@@ -9,7 +9,8 @@ const app = express();
 /// FUNCTION TO FETCH VIDEO URLs WITH VIDEO IDs
 async function getYoutubeVideoList(channel, urlAddress) {
     try {
-        const browser = await puppeteer.launch({ headless: true });
+        const browser = await puppeteer.launch({ headless: "new" });
+        // const browser = await puppeteer.launch({ headless: true });
         const page = await browser.newPage();
 
         // Configure the navigation timeout
