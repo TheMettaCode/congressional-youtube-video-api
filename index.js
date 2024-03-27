@@ -42,7 +42,9 @@ async function getYoutubeVideoList(channel, urlAddress) {
                 for (var i = 0; i < items; i++) {
                     console.log(`[${i}] - ${channel}, ${titles[i]}, ${urls[i]}, ${dates[i]}`);
                     if ((channel == 'Capitol Babble' || channel == 'MettaCode Developers' || keywords.find((word) => titles[i].toLowerCase().includes(word)))
-                        && (dates[i].includes('minute') || dates[i].includes('minutes') || dates[i].includes('hour') || dates[i].includes('hours') || dates[i].includes('day') || dates[i].includes('seconds'))) { combinedData.push({ "channel": channel, "title": titles[i], "url": urls[i], "id": urls[i].split('v=').pop(), "date": dates[i], "thumbnail": `https://i.ytimg.com/vi/${urls[i].split('v=').pop()}/hqdefault.jpg` }); }
+                        && (dates[i].includes('minute') || dates[i].includes('minutes') || dates[i].includes('hour') || dates[i].includes('hours') || dates[i].includes('day') || dates[i].includes('seconds'))) {
+                        combinedData.push({ "channel": channel, "title": titles[i], "url": urls[i], "id": urls[i].split('v=').pop(), "date": dates[i], "thumbnail": `https://i.ytimg.com/vi/${urls[i].split('v=').pop()}/hqdefault.jpg` });
+                    }
                 }
                 console.log(`${titles.length} titles - ${urls.length} urls - ${dates.length} dates`);
             } else {
@@ -92,7 +94,8 @@ async function getVideos(sources) {
 
         await getYoutubeVideoList(source.name, url)
             .then((channelVideos) => {
-                videos.push({ "channel-name": source.name, "channel-id": source.id, "channel-slug": source.slug, "channel-url": url, "channel-videos": channelVideos.length > 6 ? channelVideos.slice(0, 6) : channelVideos });
+                console.log(`${channelVideos.length} Total Channel Videos`);
+                videos.push({ "channel-name": source.name, "channel-id": source.id, "channel-slug": source.slug, "channel-url": url, "channel-videos": channelVideos.length > 7 ? channelVideos.slice(0, 6) : channelVideos });
                 // console.log(videoList);
             });
 
