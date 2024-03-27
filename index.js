@@ -103,7 +103,7 @@ async function getVideos(sources) {
             .then((channelVideos) => {
                 // console.log(`[${channelVideos.length}] Matched videos for this channel`);
                 ///
-                videos.push({ "channel-name": source.name, "channel-id": source.id, "channel-slug": source.slug, "channel-url": url, "channel-videos": channelVideos.slice(0, 6) });
+                videos.push({ "channel-name": source.name, "channel-id": source.id, "channel-slug": source.slug, "channel-url": url, "channel-videos": channelVideos });
                 // console.log(videoList);
             });
 
