@@ -18,9 +18,9 @@ async function getYoutubeVideoList(channel, urlAddress) {
 
         const status = await page.goto(urlAddress, {
             // waitUntil: "networkidle2"
-            // waitUntil: "load",
-            waitUntil: "domcontentloaded",
-            timeout: 40000
+            waitUntil: "load",
+            // waitUntil: "domcontentloaded",
+            timeout: 30000
         });
 
         if (status != 404) {
