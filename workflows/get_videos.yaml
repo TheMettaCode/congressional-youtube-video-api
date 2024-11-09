@@ -6,7 +6,7 @@ on:
   push:
     branches:
       - main
-      - master
+      # - master
 
   # schedule:
   #   # * is a special character in YAML so you have to quote this string
@@ -15,39 +15,17 @@ on:
 permissions:
   contents: write
 
-# runs:
-#   using: "node12"
-#   main: "index.js"
-
 jobs:
   save_json_file:
     runs-on: ubuntu-latest
-    # container: node:16
     steps:
-      # - uses: actions/checkout@v2
-      - name: Checkout
-        # uses: actions/checkout@v3
-        uses: actions/checkout@v4
-        # with:
-        #   sparse-checkout: |
-        #     latest_videos.json
-        #   sparse-checkout-cone-mode: false
-      - name: Get Version
-        run: node --version
-      - run: npm --version
-      # - run: npm install
-      - name: Install express
-        run: npm install express
-      - name: Install puppeteer
-        run: npm install puppeteer
-      # - name: Install fs
-      #   run: npm install fs
+      - uses: actions/checkout@v4
+      - run: node --version
+      - run: npm install express
+      - run: npm install puppeteer
       - name: Run Index.js Javascript
-        run: node index.js
-        # run: npm run start
-      # - name: Execute Javascript
-      #   uses: amochkin/action-javascript@v1
-      #   # run: node index.js
+        run: npm run start
+        # run: node index.js
       - name: commit-latest-videos-json
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
