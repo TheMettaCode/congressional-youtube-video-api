@@ -35,7 +35,7 @@ jobs:
       - name: Get Version
         run: node --version
       - run: npm --version
-      - run: npm install
+      # - run: npm install
       - name: Install express
         run: npm install express
       - name: Install puppeteer
@@ -43,8 +43,8 @@ jobs:
       # - name: Install fs
       #   run: npm install fs
       - name: Run Index.js Javascript
-        # run: node index.js
-        run: npm run start
+        run: node index.js
+        # run: npm run start
       # - name: Execute Javascript
       #   uses: amochkin/action-javascript@v1
       #   # run: node index.js
