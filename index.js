@@ -66,8 +66,8 @@ async function getYoutubeVideoList(channel, urlAddress) {
 const nameBase = "https://www.youtube.com/c/";
 const idBase = "https://www.youtube.com/channel/";
 const youtubeChannelSources = [
-    { name: "MettaCode Developers", id: "UCUrW7YMZDBaVMjP7V3XnpVw", slug: "mettacode" },
-    { name: "Capitol Babble", id: "UC4X_dh5dgyC0d6T3KkjFTTQ", slug: "capitolbabble" },
+    // { name: "MettaCode Developers", id: "UCUrW7YMZDBaVMjP7V3XnpVw", slug: "mettacode" },
+    // { name: "Capitol Babble", id: "UC4X_dh5dgyC0d6T3KkjFTTQ", slug: "capitolbabble" },
     { name: "Bloomberg Politics", id: "UCV61VqLMr2eIhH4f51PV0gA", slug: "bloomberg" },
     { name: "Politico", id: "UCgjtvMmHXbutALaw9XzRkAg", slug: "politico" },
     { name: "C-SPAN", id: "UCb--64Gl51jIEVE-GLDAVTg", slug: "cspan" },
