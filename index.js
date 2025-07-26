@@ -68,7 +68,7 @@ const idBase = "https://www.youtube.com/channel/";
 const youtubeChannelSources = [
     // { name: "MettaCode Developers", id: "UCUrW7YMZDBaVMjP7V3XnpVw", slug: "mettacode" },
     // { name: "Capitol Babble", id: "UC4X_dh5dgyC0d6T3KkjFTTQ", slug: "capitolbabble" },
-    { name: "Bloomberg Politics", id: "UCV61VqLMr2eIhH4f51PV0gA", slug: "bloomberg" },
+    // { name: "Bloomberg Politics", id: "UCV61VqLMr2eIhH4f51PV0gA", slug: "bloomberg" },
     { name: "Politico", id: "UCgjtvMmHXbutALaw9XzRkAg", slug: "politico" },
     { name: "C-SPAN", id: "UCb--64Gl51jIEVE-GLDAVTg", slug: "cspan" },
     { name: "Epoch TV", id: "UCr9eziCDBtDANyWguKLr4vg", slug: "epochtv" },
@@ -79,7 +79,7 @@ const youtubeChannelSources = [
 ];
 
 const keywords = [
-    "amendment", "biden", "trump", "kamala harris", "ballot", " bill ", "civil war", "committee", "congress", "capitol", "capitol hill", "constitution", " dems ", "democrats", "general election", "election", "filibuster", "financial services", " gop ", "house floor", "house of representatives", "impeach", "investing", "labor market", " law ", "majority leader", "mike johnson", "midterms", "midterm election", "minority leader", "nuclear war", "omnibus", "political", "politics", "press secretary", " primaries ", "republicans", "runoff election", "senate", "senate floor", "speaker of the house", "stock", "tax", "unemployment", "us congress", "vote", "war in", "washington dc", "whistleblower", "white house"
+    "amendment", "trump", "kamala harris", "ballot", " bill ", "civil war", "committee", "congress", "capitol", "capitol hill", "constitution", " dems ", "democrats", "general election", "election", "federal", "filibuster", "financial services", " gop ", "house floor", "house of representatives", "impeach", "investing", "labor market", " law ", "majority leader", "mike johnson", "midterms", "midterm election", "minority leader", "nuclear war", "omnibus", "political", "politics", "press secretary", " primaries ", "republicans", "runoff election", "senate", "senate floor", "speaker of the house", "stock", "tax", "unemployment", "us congress", "vote", "war in", "washington dc", "whistleblower", "white house"
 ];
 
 const videos = [];
